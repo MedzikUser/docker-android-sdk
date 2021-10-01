@@ -34,7 +34,9 @@ RUN set -o xtrace \
     && yes | sdkmanager --licenses \
     && wget -O /usr/bin/android-wait-for-emulator https://raw.githubusercontent.com/travis-ci/travis-cookbooks/master/community-cookbooks/android-sdk/files/default/android-wait-for-emulator \
     && chmod +x /usr/bin/android-wait-for-emulator \
-    && touch /root/.android/repositories.cfg \
-    && sdkmanager platforms platform-tools build-tools \
-    && mkdir -p /root/.android \
+    && touch /root/.android/repositories.cfg
+
+RUN sdkmanager platforms platform-tools build-tools
+
+RUN mkdir -p /root/.android \
     && touch /root/.android/repositories.cfg
