@@ -36,7 +36,10 @@ RUN set -o xtrace \
     && chmod +x /usr/bin/android-wait-for-emulator \
     && touch /root/.android/repositories.cfg
 
-RUN yes | sdkmanager platforms platform-tools build-tools
+ENV ANDROID_PLATFORM_VERSION 30
+ENV ANDROID_BUILD_TOOLS_VERSION 30.0.2
+
+RUN yes | sdkmanager platform-tools "platforms;android-$ANDROID_PLATFORM_VERSION" "build-tools;$ANDROID_BUILD_TOOLS_VERSION"
 
 RUN mkdir -p /root/.android \
     && touch /root/.android/repositories.cfg
