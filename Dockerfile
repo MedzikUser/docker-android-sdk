@@ -18,6 +18,8 @@ ENV ANDROID_SDK_TOOLS_VERSION 7583922
 RUN apt-get update \
     && apt-get install -qq -y --no-install-recommends \
         apt-transport-https \
+	wget \
+	bc \
         curl \
         file \
         gcc \
