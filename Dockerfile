@@ -14,10 +14,31 @@ ENV PATH=${ANDROID_HOME}/cmdline-tools/latest/bin:${ANDROID_HOME}/emulator:${AND
 ENV ANDROID_SDK_TOOLS_VERSION 7583922
 
 RUN apt-get update \
-    && apt-get install -y openjdk-11-jdk \
-    && apt-get install -y sudo wget zip unzip git openssh-client curl bc software-properties-common build-essential ruby-full ruby-bundler libstdc++6 libpulse0 libglu1-mesa locales lcov libsqlite3-0 --no-install-recommends \
-    # for x86 emulators
-    && apt-get install -y libxtst6 libnss3-dev libnspr4 libxss1 libasound2 libatk-bridge2.0-0 libgtk-3-0 libgdk-pixbuf2.0-0 \
+    && apt-get install -qq -y --no-install-recommends \
+        apt-transport-https \
+        curl \
+        file \
+        gcc \
+        git \
+        g++ \
+        gnupg2 \
+        libc++1-10 \
+        libgl1 \
+        libtcmalloc-minimal4 \
+        make \
+        openjdk-11-jdk-headless \
+        openssh-client \
+        patch \
+        python3 \
+        python3-distutils \
+        rsync \
+        ruby \
+        ruby-dev \
+        tzdata \
+        unzip \
+        sudo \
+        ninja-build \
+        zip
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
