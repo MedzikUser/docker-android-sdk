@@ -46,7 +46,8 @@ RUN yes | sdkmanager \
       "platforms;android-$ANDROID_PLATFORM_VERSION" \
       "build-tools;$ANDROID_BUILD_TOOLS_VERSION" \
       "cmdline-tools;latest" \
-      "system-images;android-21;google_apis;armeabi-v7a"
+      "system-images;android-21;google_apis;armeabi-v7a" \
+      "emulator"
 
 RUN mkdir -p /root/.android \
     && touch /root/.android/repositories.cfg
