@@ -42,10 +42,11 @@ ENV ANDROID_PLATFORM_VERSION 30
 ENV ANDROID_BUILD_TOOLS_VERSION 30.0.2
 
 RUN yes | sdkmanager \
-      "platform-tools" \
+      "platform-tools;latest" \
       "platforms;android-$ANDROID_PLATFORM_VERSION" \
       "build-tools;$ANDROID_BUILD_TOOLS_VERSION" \
-      "cmdline-tools;latest"
+      "cmdline-tools;latest" \
+      "system-images;android-21;google_apis;armeabi-v7a"
 
 RUN mkdir -p /root/.android \
     && touch /root/.android/repositories.cfg
