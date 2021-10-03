@@ -2,6 +2,8 @@ FROM ubuntu:focal
 
 USER root
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 ENV ANDROID_HOME=/opt/android-sdk-linux \
     LANG=en_US.UTF-8 \
     LC_ALL=en_US.UTF-8 \
