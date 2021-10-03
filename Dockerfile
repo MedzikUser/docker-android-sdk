@@ -38,7 +38,7 @@ RUN apt-get update \
         unzip \
         sudo \
         ninja-build \
-        zip
+        zip \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
