@@ -7,8 +7,8 @@ ENV ANDROID_HOME=/opt/android-sdk-linux \
     LC_ALL=en_US.UTF-8 \
     LANGUAGE=en_US:en
 
-ENV ANDROID_SDK_ROOT=$ANDROID_HOME \
-    PATH=${PATH}:${ANDROID_HOME}/cmdline-tools/latest/bin:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/emulator
+ENV ANDROID_SDK_ROOT=$ANDROID_HOME
+ENV PATH=${ANDROID_HOME}/cmdline-tools/latest/bin:${ANDROID_HOME}/emulator:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${PATH}
 
 # comes from https://developer.android.com/studio/#command-tools
 ENV ANDROID_SDK_TOOLS_VERSION 7583922
@@ -45,9 +45,7 @@ RUN yes | sdkmanager \
       "platform-tools" \
       "platforms;android-$ANDROID_PLATFORM_VERSION" \
       "build-tools;$ANDROID_BUILD_TOOLS_VERSION" \
-      "cmdline-tools;latest" \
-      "system-images;android-21;google_apis;armeabi-v7a" \
-      "emulator"
+      "cmdline-tools;latest"
 
 RUN mkdir -p /root/.android \
     && touch /root/.android/repositories.cfg
