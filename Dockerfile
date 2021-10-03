@@ -41,6 +41,7 @@ RUN apt-get update \
         sudo \
         ninja-build \
         zip \
+	locales \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
