@@ -55,17 +55,17 @@ RUN set -o xtrace \
     && wget -q https://dl.google.com/android/repository/${ANDROID_SDK_TOOLS_FILE_NAME} -O android-sdk-tools.zip \
     && mkdir -p ${ANDROID_HOME}/cmdline-tools/ \
     && unzip -q android-sdk-tools.zip -d ${ANDROID_HOME}/cmdline-tools/ \
+    && rm android-sdk-tools.zip \
     && mv ${ANDROID_HOME}/cmdline-tools/cmdline-tools ${ANDROID_HOME}/cmdline-tools/latest \
     && chown -R root:root $ANDROID_HOME \
-    && rm android-sdk-tools.zip \
     && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
     && yes | sdkmanager --licenses \
     && wget -O /usr/bin/android-wait-for-emulator https://raw.githubusercontent.com/travis-ci/travis-cookbooks/master/community-cookbooks/android-sdk/files/default/android-wait-for-emulator \
     && chmod +x /usr/bin/android-wait-for-emulator \
     && touch /root/.android/repositories.cfg
 
-ENV ANDROID_PLATFORM_VERSION 31
-ENV ANDROID_BUILD_TOOLS_VERSION 31.0.3
+ENV ANDROID_PLATFORM_VERSION 30
+ENV ANDROID_BUILD_TOOLS_VERSION 30.0.2
 
 RUN yes | sdkmanager \
       "platform-tools" \
