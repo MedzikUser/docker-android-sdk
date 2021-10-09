@@ -13,7 +13,7 @@ ENV ANDROID_SDK_ROOT=$ANDROID_HOME
 ENV PATH=${ANDROID_HOME}/cmdline-tools/latest/bin:${ANDROID_HOME}/emulator:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${PATH}
 
 # comes from https://developer.android.com/studio/#command-tools
-ENV ANDROID_SDK_TOOLS_VERSION 7583922
+ENV ANDROID_SDK_TOOLS_FILE_NAME commandlinetools-linux-7583922_latest.zip
 
 RUN apt-get update \
     && apt-get install -qq -y --no-install-recommends \
@@ -52,7 +52,7 @@ RUN set -o xtrace \
     && sh -c 'echo "en_US.UTF-8 UTF-8" > /etc/locale.gen' \
     && locale-gen \
     && update-locale LANG=en_US.UTF-8 \
-    && wget -q https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS_VERSION}_latest.zip -O android-sdk-tools.zip \
+    && wget -q https://dl.google.com/android/repository/${ANDROID_SDK_TOOLS_FILE_NAME} -O android-sdk-tools.zip \
     && mkdir -p ${ANDROID_HOME}/cmdline-tools/ \
     && unzip -q android-sdk-tools.zip -d ${ANDROID_HOME}/cmdline-tools/ \
     && mv ${ANDROID_HOME}/cmdline-tools/cmdline-tools ${ANDROID_HOME}/cmdline-tools/latest \
@@ -64,8 +64,8 @@ RUN set -o xtrace \
     && chmod +x /usr/bin/android-wait-for-emulator \
     && touch /root/.android/repositories.cfg
 
-ENV ANDROID_PLATFORM_VERSION 30
-ENV ANDROID_BUILD_TOOLS_VERSION 30.0.2
+ENV ANDROID_PLATFORM_VERSION 31
+ENV ANDROID_BUILD_TOOLS_VERSION 31.0.3
 
 RUN yes | sdkmanager \
       "platform-tools" \
