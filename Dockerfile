@@ -16,7 +16,7 @@ ENV PATH=${ANDROID_HOME}/cmdline-tools/latest/bin:${ANDROID_HOME}/emulator:${AND
 ENV ANDROID_SDK_TOOLS_FILE_NAME commandlinetools-linux-7583922_latest.zip
 
 RUN apt-get update \
-    && apt-get install -qq -y --no-install-recommends \
+ && apt-get install -qq -y --no-install-recommends \
         apt-transport-https \
 	wget \
 	bc \
@@ -44,25 +44,25 @@ RUN apt-get update \
         ninja-build \
         zip \
 	locales \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
 
 RUN set -o xtrace \
-    && cd /opt \
-    && sh -c 'echo "en_US.UTF-8 UTF-8" > /etc/locale.gen' \
-    && locale-gen \
-    && update-locale LANG=en_US.UTF-8 \
-    && wget -q https://dl.google.com/android/repository/${ANDROID_SDK_TOOLS_FILE_NAME} -O android-sdk-tools.zip \
-    && mkdir -p ${ANDROID_HOME}/cmdline-tools/ \
-    && unzip -q android-sdk-tools.zip -d ${ANDROID_HOME}/cmdline-tools/ \
-    && rm android-sdk-tools.zip \
-    && mv ${ANDROID_HOME}/cmdline-tools/cmdline-tools ${ANDROID_HOME}/cmdline-tools/latest \
-    && chown -R root:root $ANDROID_HOME \
-    && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
-    && yes | sdkmanager --licenses \
-    && wget -O /usr/bin/android-wait-for-emulator https://raw.githubusercontent.com/travis-ci/travis-cookbooks/master/community-cookbooks/android-sdk/files/default/android-wait-for-emulator \
-    && chmod +x /usr/bin/android-wait-for-emulator \
-    && touch /root/.android/repositories.cfg
+ && cd /opt \
+ && sh -c 'echo "en_US.UTF-8 UTF-8" > /etc/locale.gen' \
+ && locale-gen \
+ && update-locale LANG=en_US.UTF-8 \
+ && wget -q https://dl.google.com/android/repository/${ANDROID_SDK_TOOLS_FILE_NAME} -O android-sdk-tools.zip \
+ && mkdir -p ${ANDROID_HOME}/cmdline-tools/ \
+ && unzip -q android-sdk-tools.zip -d ${ANDROID_HOME}/cmdline-tools/ \
+ && rm android-sdk-tools.zip \
+ && mv ${ANDROID_HOME}/cmdline-tools/cmdline-tools ${ANDROID_HOME}/cmdline-tools/latest \
+ && chown -R root:root $ANDROID_HOME \
+ && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
+ && yes | sdkmanager --licenses \
+ && wget -O /usr/bin/android-wait-for-emulator https://raw.githubusercontent.com/travis-ci/travis-cookbooks/master/community-cookbooks/android-sdk/files/default/android-wait-for-emulator \
+ && chmod +x /usr/bin/android-wait-for-emulator \
+ && touch /root/.android/repositories.cfg
 
 ENV ANDROID_PLATFORM_VERSION 31
 ENV ANDROID_BUILD_TOOLS_VERSION 30.0.2
@@ -74,4 +74,4 @@ RUN yes | sdkmanager \
       "cmdline-tools;latest"
 
 RUN mkdir -p /root/.android \
-    && touch /root/.android/repositories.cfg
+ && touch /root/.android/repositories.cfg
