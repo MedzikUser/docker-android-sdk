@@ -1,5 +1,7 @@
 FROM medzik/archlinux:latest
 
+WORKDIR /home/build
+
 # Install cmdline tools
 RUN git clone https://aur.archlinux.org/android-sdk-cmdline-tools-latest.git \
  && cd android-sdk-cmdline-tools-latest \
