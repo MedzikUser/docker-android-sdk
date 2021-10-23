@@ -2,7 +2,7 @@ FROM medzik/archlinux:latest
 
 WORKDIR /home/build
 
-# Instapp dependencies
+# Install dependencies
 RUN sudo pacman -Sy --noconfirm \
       jdk-openjdk \
  && yes | sudo pacman -Scc
@@ -32,4 +32,13 @@ RUN git clone https://aur.archlinux.org/android-platform.git \
  && sudo pacman -U ./*.pkg.tar* --noconfirm \
  && cd .. \
  && rm -rf android-platform \
+ && yes | sudo pacman -Scc
+
+# Install build tools
+RUN git clone https://aur.archlinux.org/android-sdk-build-tools.git \
+ && cd android-sdk-build-tools \
+ && makepkg -sr --noconfirm \
+ && sudo pacman -U ./*.pkg.tar* --noconfirm \
+ && cd .. \
+ && rm -rf android-sdk-build-tools \
  && yes | sudo pacman -Scc
