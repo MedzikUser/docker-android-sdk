@@ -4,7 +4,7 @@ WORKDIR /home/build
 
 # Install dependencies
 RUN sudo pacman -Sy --noconfirm \
-      jdk-openjdk \
+      jdk11-openjdk \
  && yes | sudo pacman -Scc
 
 # Install cmdline tools
