@@ -15,3 +15,21 @@ RUN git clone https://aur.archlinux.org/android-sdk-cmdline-tools-latest.git \
  && cd .. \
  && rm -rf android-sdk-cmdline-tools-latest \
  && yes | sudo pacman -Scc
+
+# Install platform tools
+RUN git clone https://aur.archlinux.org/android-sdk-platform-tools.git \
+ && cd android-sdk-platform-tools \
+ && makepkg -sr --noconfirm \
+ && sudo pacman -U ./*.pkg.tar* --noconfirm \
+ && cd .. \
+ && rm -rf android-sdk-platform-tools \
+ && yes | sudo pacman -Scc
+
+# Install platform
+RUN git clone https://aur.archlinux.org/android-platform.git \
+ && cd android-platform \
+ && makepkg -sr --noconfirm \
+ && sudo pacman -U ./*.pkg.tar* --noconfirm \
+ && cd .. \
+ && rm -rf android-platform \
+ && yes | sudo pacman -Scc
