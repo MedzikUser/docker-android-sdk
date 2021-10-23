@@ -11,7 +11,7 @@ on:
   pull_request:
 
 jobs:
-  build:
+  archlinux:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,6 +28,26 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
-          context: .
+          context: archlinux
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: medzik/android-sdk:archlinux
+  ubuntu:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Login to DockerHub
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: ubuntu
           push: ${{ github.event_name != 'pull_request' }}
           tags: medzik/android-sdk:latest
