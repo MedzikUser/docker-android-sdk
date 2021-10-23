@@ -32,6 +32,7 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: medzik/android-sdk:archlinux
   ubuntu:
+    needs: archlinux
     runs-on: ubuntu-latest
 
     steps:
