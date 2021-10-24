@@ -31,6 +31,7 @@ jobs:
           context: archlinux
           push: ${{ github.event_name != 'pull_request' }}
           tags: medzik/android-sdk:archlinux
+
   ubuntu:
     needs: archlinux
     runs-on: ubuntu-latest
@@ -51,4 +52,6 @@ jobs:
         with:
           context: ubuntu
           push: ${{ github.event_name != 'pull_request' }}
-          tags: medzik/android-sdk:latest
+          tags: |
+            medzik/android-sdk:ubuntu
+            medzik/android-sdk:latest
